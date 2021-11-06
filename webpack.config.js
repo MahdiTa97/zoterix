@@ -42,6 +42,7 @@ var options = {
     contentScript: path.join(__dirname, 'src', 'pages', 'Content', 'index.js'),
     devtools: path.join(__dirname, 'src', 'pages', 'Devtools', 'index.js'),
     panel: path.join(__dirname, 'src', 'pages', 'Panel', 'index.jsx'),
+    disabled: path.join(__dirname, 'src', 'pages', 'Disabled', 'index.jsx'),
   },
   chromeExtensionBoilerplate: {
     notHotReload: ['contentScript', 'devtools'],
@@ -151,7 +152,25 @@ var options = {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: 'src/assets/img/icon-48.png',
+          from: 'src/assets/img/icon-34.png',
+          to: path.join(__dirname, 'build'),
+          force: true,
+        },
+      ],
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'src/assets/img/icon-34-disabled.png',
+          to: path.join(__dirname, 'build'),
+          force: true,
+        },
+      ],
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'src/assets/img/icon-128-disabled.png',
           to: path.join(__dirname, 'build'),
           force: true,
         },
@@ -173,6 +192,12 @@ var options = {
       template: path.join(__dirname, 'src', 'pages', 'Popup', 'index.html'),
       filename: 'popup.html',
       chunks: ['popup'],
+      cache: false,
+    }),
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'src', 'pages', 'Disabled', 'index.html'),
+      filename: 'disabled.html',
+      chunks: ['disabled'],
       cache: false,
     }),
     new HtmlWebpackPlugin({

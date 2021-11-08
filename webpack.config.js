@@ -45,7 +45,7 @@ var options = {
     disabled: path.join(__dirname, 'src', 'pages', 'Disabled', 'index.jsx'),
   },
   chromeExtensionBoilerplate: {
-    notHotReload: ['contentScript', 'devtools'],
+    notHotReload: ['devtools'],
   },
   output: {
     path: path.resolve(__dirname, 'build'),
@@ -71,6 +71,9 @@ var options = {
             options: {
               sourceMap: true,
             },
+          },
+          {
+            loader: 'postcss-loader',
           },
         ],
       },
